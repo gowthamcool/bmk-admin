@@ -1,0 +1,251 @@
+    <div class="enquiry">
+        <form action="" [formGroup]="enquiry">
+            <h2 class="heading">Add Property</h2>
+            <div class="form-group row">
+                <div class="col-lg-6">
+                    <label for="title">Property Title:</label>
+                </div>
+                <div class="col-lg-6">
+                    <input type="text" name="title" id="title" formControlName="propertyName" class="form-control" required>
+                    <div *ngIf="enquiryFormControl['propertyName'].invalid && (enquiryFormControl['propertyName'].dirty || enquiryFormControl['propertyName'].touched)" class="alert alert-danger">
+                        <div *ngIf="enquiryFormControl['propertyName'].errors?.['required']">
+                            Property Title is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-6">
+                    <label for="purpose">Property Type:</label>
+                </div>
+                <div class="col-lg-6">
+                    <select name="purpose" id="purpose" class="form-control" formControlName="purpose" (change)="onSelect()">
+                        <option value="plot">Plot</option>
+                        <option value="house">House</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row"  *ngIf="plot">
+                <div class="col-lg-6">
+                    <label for="layout">Layout Name:</label>
+                </div>
+                <div class="col-lg-6">
+                    <input type="text" id="layout" name="layout" class="form-control"  formControlName="layout"  required>
+                    <div *ngIf="enquiryFormControl['layout'].invalid && (enquiryFormControl['layout'].dirty || enquiryFormControl['layout'].touched)" class="alert alert-danger">
+                        <div *ngIf="enquiryFormControl['layout'].errors?.['required']">
+                            Layout name must be mentioned.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-6">
+                    <label for="area">Area(in sqft):</label>
+                </div>
+                <div class="col-lg-6">
+                    <input type="number" name="area" id="area" formControlName="area" class="form-control" min="500" max="20000" required>
+                    <div *ngIf="enquiryFormControl['area'].invalid && (enquiryFormControl['area'].dirty || enquiryFormControl['area'].touched)" class="alert alert-danger">
+                        <div *ngIf="enquiryFormControl['area'].errors?.['required']">
+                            Area is required.
+                        </div>
+                        <div *ngIf="enquiryFormControl['area'].errors?.['min']">
+                            Area cannot be so less.
+                        </div>
+                        <div *ngIf="enquiryFormControl['area'].errors?.['max']">
+                            Area cannot be more than 20000 sqft.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-6">
+                    <label for="locality">Locality:</label>
+                </div>
+                <div class="col-lg-6">
+                    <input type="text" name="locality" id="locality"  formControlName="locality" class="form-control" required>
+                    <div *ngIf="enquiryFormControl['locality'].invalid && (enquiryFormControl['locality'].dirty || enquiryFormControl['locality'].touched)" class="alert alert-danger">
+                        <div *ngIf="enquiryFormControl['locality'].errors?.['required']">
+                           locality is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-6">
+                    <label for="address">Address:</label>
+                </div>
+                <div class="col-lg-6">
+                    <input type="text" name="address" id="address"  formControlName="address" class="form-control" required>
+                    <div *ngIf="enquiryFormControl['address'].invalid && (enquiryFormControl['address'].dirty || enquiryFormControl['address'].touched)" class="alert alert-danger">
+                        <div *ngIf="enquiryFormControl['address'].errors?.['required']">
+                           Address is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-6">
+                    <label for="address">Highlights:</label>
+                </div>
+                <div class="col-lg-6">
+                    <input type="text" name="highlight" id="highlight"  formControlName="highlight" class="form-control" required>
+                    <button class="btn btn-primary" (click)="addHighlights()">Add</button>
+                    <div class="highlight-list">
+                        <span class="highlight" *ngFor="let h of highlights">{{h}}</span>
+                    </div>
+                    <div *ngIf="highlights.length==0"  class="alert alert-danger">
+                        Highlights cannot be empty
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-6">
+                    <label for="status">Status:</label>
+                </div>
+                <div class="col-lg-6">
+                    <select name="status" id="status" class="form-control" formControlName="status">
+                        <option value="rtm">Ready to Move</option>
+                        <option value="uc">Under Construction</option>
+                    </select>
+                    <div *ngIf="enquiryFormControl['status'].invalid && (enquiryFormControl['status'].dirty || enquiryFormControl['status'].touched)" class="alert alert-danger">
+                        <div *ngIf="enquiryFormControl['status'].errors?.['required']">
+                           Status is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row"  *ngIf="house">
+                <div class="col-lg-6">
+                    <label for="bed">number of bedrooms:</label>
+                </div>
+                <div class="col-lg-6">
+                    <input type="number" name="bed" id="bed" class="form-control"  formControlName="bed" min="1" max="20" required>
+                    <div *ngIf="enquiryFormControl['bed'].invalid && (enquiryFormControl['bed'].dirty || enquiryFormControl['bed'].touched)" class="alert alert-danger">
+                        <div *ngIf="enquiryFormControl['bed'].errors?.['required']">
+                            Number of bedrooms is required.
+                        </div>
+                        <div *ngIf="enquiryFormControl['bed'].errors?.['min']">
+                            Number of bedrooms cannot be so less.
+                        </div>
+                        <div *ngIf="enquiryFormControl['bed'].errors?.['max']">
+                            Number of bedrooms cannot be more than 20
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row"  *ngIf="house">
+                <div class="col-lg-6">
+                    <label for="bath">number of bathrooms:</label>
+                </div>
+                <div class="col-lg-6">
+                    <input type="number" name="bath" id="bath" class="form-control" formControlName="bath" min="1" max="10" required>
+                    <div *ngIf="enquiryFormControl['bath'].invalid && (enquiryFormControl['bath'].dirty || enquiryFormControl['bath'].touched)" class="alert alert-danger">
+                        <div *ngIf="enquiryFormControl['bath'].errors?.['required']">
+                            Number of bathrooms is required.
+                        </div>
+                        <div *ngIf="enquiryFormControl['bath'].errors?.['min']">
+                            Number of bathrooms cannot be so less.
+                        </div>
+                        <div *ngIf="enquiryFormControl['bath'].errors?.['max']">
+                            Number of bathrooms cannot be more than 10
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row"  *ngIf="house">
+                <div class="col-lg-6">
+                    <label for="parking">Parking:</label>
+                </div>
+                <div class="col-lg-6">
+                    <select name="parking" id="parking" class="form-control" formControlName="parking" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row"  *ngIf="house">
+                <div class="col-lg-6">
+                    <label for="swimming">swimming-pool:</label>
+                </div>
+                <div class="col-lg-6">
+                    <select name="swimming" id="swimming" class="form-control"  formControlName="swimming" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row"  *ngIf="house">
+                <div class="col-lg-6">
+                    <label for="garden">Garden:</label>
+                </div>
+                <div class="col-lg-6">
+                    <select name="garden" id="garden" class="form-control"  formControlName="garden" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-6">
+                    <label for="khata">Khata Id:</label>
+                </div>
+                <div class="col-lg-6">
+                    <input type="text" name="khata" id="khata" class="form-control" formControlName="khata" required>
+                    <div *ngIf="enquiryFormControl['khata'].invalid && (enquiryFormControl['khata'].dirty || enquiryFormControl['khata'].touched)" class="alert alert-danger">
+                        <div *ngIf="enquiryFormControl['khata'].errors?.['required']">
+                            Khatha Id is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-6">
+                    <label for="price">Price(in rs.):</label>
+                </div>
+                <div class="col-lg-6">
+                    <input type="number" name="price" id="price" class="form-control" min="100000" max="990000000"  formControlName="price" required>
+                    <div *ngIf="enquiryFormControl['price'].invalid && (enquiryFormControl['price'].dirty || enquiryFormControl['price'].touched)" class="alert alert-danger">
+                        <div *ngIf="enquiryFormControl['price'].errors?.['required']">
+                            Price cannot be empty.
+                        </div>
+                        <div *ngIf="enquiryFormControl['price'].errors?.['min']">
+                            Minimum starting budget is 1 Lakh
+                        </div>
+                        <div *ngIf="enquiryFormControl['price'].errors?.['max']">
+                            Maximum budget is 99 Crore
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-6">
+                    <label for="approval">Approval:</label>
+                </div>
+                <div class="col-lg-6">
+                    <select name="approval" id="approval" class="form-control"  formControlName="approval" required>
+                        <option value="muda">MUDA Approved</option>
+                        <option value="dtcp">DTCP Approved</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-6">
+                    <label for="images">Images Url:</label>
+                </div>
+                <div class="col-lg-6">
+                    <input type="text" name="images" id="images"  formControlName="images" class="form-control" required>
+                    <button class="btn btn-primary" (click)="addImages()">Add</button>
+                    <div class="highlight-list">
+                        <span class="highlight" *ngFor="let i of images">{{i}}</span>
+                    </div>
+                    <div *ngIf="images.length==0"  class="alert alert-danger">
+                        Images cannot be empty
+                    </div>
+                </div>
+            </div>
+             <br/>
+            <div class="d-flex" style="justify-content: center;">
+                <button type="button" class="btn btn-primary" (click)="submit()">Submit</button>
+            </div>
+        </form>
+    </div>

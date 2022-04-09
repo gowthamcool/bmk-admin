@@ -1,0 +1,27 @@
+<h1>View properties</h1>
+<br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+
+            <th>PropertyId</th>
+            <th>Property Name</th>
+            <th>Property Type</th>
+            <th>Locality</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container  *ngFor="let property of data;let i=index">
+            <tr>
+                <td>{{property.propertyId}}</td>
+                <td>{{property.propertyName}}</td>
+                <td>{{property.propertyType}}</td>
+                <td>{{property.Locality}}</td>
+                <td>{{property.price}}</td>
+                <td class="d-flex" style="justify-content: space-between;"><button class="btn btn-success">View</button><button class="btn btn-primary">Edit</button><button class="btn btn-danger">Delet</button></td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>

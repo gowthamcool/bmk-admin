@@ -1,0 +1,31 @@
+<h1>View Enquiries</h1>
+    <br>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+
+                <th>EnquiryId</th>
+                <th>Purpose</th>
+                <th>Area in sq.ft.</th>
+                <th>Locality</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Approval</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container  *ngFor="let enquiry of enquiries;let i=index">
+                <tr>
+                    <td>{{enquiry.enquiryId}}</td>
+                    <td>{{enquiry.purpose}}</td>
+                    <td>{{enquiry.areainSqFt}}</td>
+                    <td>{{enquiry.locality}}</td>
+                    <td>{{enquiry.price}}</td>
+                    <td>{{enquiry.description}}</td>
+                    <td>{{enquiry.approval}}</td>
+                    <td class="d-flex" style="justify-content: space-between;"><button class="btn btn-danger">Delet</button></td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>

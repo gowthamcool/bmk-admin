@@ -1,0 +1,80 @@
+<div class="prop-images">
+    <app-carousel [imgSrc]="activeProperty.propertyImages"></app-carousel>
+</div>
+<div class="container">
+    <div class="property-header">
+        <h2 class="property-title">{{activeProperty.propertyName}}</h2>
+        <h2 class="locality">{{activeProperty.Locality}}</h2>
+        <h2 class="price"> &#8377; {{activeProperty.price}}</h2>
+    </div>
+    <div class="row details">
+        <div class="col-md-4 text-center">
+            <h3 class="heading">Area</h3>
+            <span class="detail-value">{{activeProperty.areaInSqFt}} sq.ft.</span>
+        </div>
+        <div class="col-md-4 text-center">
+            <h3 class="heading">Status</h3>
+            <span class="detail-value">{{activeProperty.status}}</span>
+        </div>
+        <div class="col-md-4 text-center">
+            <h3 class="heading">Approval</h3>
+            <span class="detail-value">{{activeProperty.approval}}</span>
+        </div>
+    </div>
+    <br>
+    <address>
+        {{activeProperty.address}}
+    </address>
+    <p class="description">{{activeProperty.description}}</p>
+    <section class="amenities">
+        <h2 class="heading">Amenities</h2>
+        <section class="specs">
+            <div class="d-flex" *ngIf="activeProperty.propertyType=='House'">
+                <fa-icon [icon]="['fas', 'bed']" [styles]="{'stroke': 'red', 'color': 'red'}"></fa-icon>
+                <span class="count">&nbsp;{{activeProperty.bedRooms}}</span>
+             </div>
+             <div class="d-flex" *ngIf="activeProperty.propertyType=='House'">
+                <fa-icon [icon]="['fas', 'shower']" [styles]="{'stroke': 'red', 'color': 'red'}"></fa-icon>
+                <span class="count">&nbsp;{{activeProperty.bathRooms}}</span>
+             </div>
+             <div class="d-flex" *ngIf="activeProperty.propertyType=='House' && activeProperty.swimmingPool">
+                <fa-icon [icon]="['fas', 'swimming-pool']" [styles]="{'stroke': 'red', 'color': 'red'}"></fa-icon>
+             </div>
+             <div class="d-flex" *ngIf="activeProperty.propertyType=='House' && activeProperty.parking">
+                <fa-icon [icon]="['fas', 'parking']" [styles]="{'stroke': 'red', 'color': 'red'}"></fa-icon>
+             </div>
+             <div class="d-flex" *ngIf="activeProperty.propertyType=='House' && activeProperty.garden">
+                <fa-icon [icon]="['fas', 'tree']" [styles]="{'stroke': 'red', 'color': 'red'}"></fa-icon>
+             </div>
+             <div class="d-flex" *ngIf="activeProperty.propertyType=='Plot' && activeProperty.water">
+                <fa-icon [icon]="['fas', 'faucet']" [styles]="{'stroke': 'red', 'color': 'red'}"></fa-icon>
+             </div>
+             <div class="d-flex" *ngIf="activeProperty.propertyType=='Plot' && activeProperty.electricity">
+                <fa-icon [icon]="['fas', 'lightbulb']" [styles]="{'stroke': 'red', 'color': 'red'}"></fa-icon>
+             </div>
+             <div class="d-flex" *ngIf="activeProperty.propertyType=='Plot' && activeProperty.drainage">
+                <fa-icon [icon]="['fas', 'broom']" [styles]="{'stroke': 'red', 'color': 'red'}"></fa-icon>
+             </div>
+        </section>
+    </section>
+    <div class="row mt-5">
+        <div class="col-lg-6">
+            <section class="highlights">
+                <h2 class="heading">Highlights</h2>
+                <div class="d-flex mt-4" *ngFor="let highlight of activeProperty.highlights">
+                    <fa-icon [icon]="['fas', 'hand-point-right']" [styles]="{'stroke': '#36454F', 'color': '#36454F'}"></fa-icon>
+                    <span class="points">{{highlight}}</span>
+                </div>
+            </section>
+        </div>
+        <div class="col-lg-6">
+            <form class="enquiry text-center">
+                <h2 class="enquiry-head">Enquiry Form</h2>
+                <input type="text" name="name" id="name" placeholder="Enter your Name" class="form-control enquiry-input">
+                <input type="email" name="email" id="email" placeholder="Enter your Email" class="form-control enquiry-input">
+                <input type="text" name="phone" id="phone" placeholder="Enter your Mobile Number" class="form-control enquiry-input">
+                <textarea name="message" id="message" cols="60" rows="6" placeholder="Post your Queries" class="form-control enquiry-input"></textarea>
+                <button class="btn submit-enquiry">Submit</button>
+            </form>
+        </div>
+    </div>

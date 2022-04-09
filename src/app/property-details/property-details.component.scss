@@ -1,0 +1,88 @@
+.prop-images{
+    height: 20rem;
+}
+.property-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: red;
+    color: var(--white);
+    margin: 2rem 0;
+}
+
+.details{
+    padding: 3rem 0 3rem 0;
+    box-shadow: 2px 2px 8.5px #cecece;
+
+    .heading{
+        color: var(--blackHeading);
+        font-size: 18px;
+    }
+    .detail-value{
+        color: red;
+        font-size: 12px;
+    }
+}
+.description{
+    margin-top: 2rem;
+    font-size: 14px;
+}
+
+.amenities{
+    padding: 2rem;
+    box-shadow: 2px 2px 8.5px #cecece;
+
+    .heading{
+        color: var(--blackHeading);
+        font-size: 24px;
+        text-align: center;
+    }
+    .specs{
+        margin-top: 2rem;
+        display: flex;
+        justify-content: space-between;
+        
+        .count{
+            color: red;
+        }
+    }
+}
+
+.highlights{
+    .heading{
+        color: var(--blackHeading);
+        font-size: 24px;
+        text-align: center;
+    }
+    .points{
+        padding-left: 2rem;
+        color: var(--blackHeading);
+    }
+}
+.enquiry{
+    background-color: red;
+    padding: 3rem;
+    .enquiry-head{
+        color: var(--white);
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    .enquiry-input{
+        margin-bottom: 1.5rem;
+        background-color: transparent;
+        border: 1px solid var(--white);
+        resize: none;
+        color: var(--white);
+
+        &::placeholder{
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 300;
+        }
+    }
+    .submit-enquiry{
+        color: var(--white);
+        border: 1px solid var(--white);
+    }
+}

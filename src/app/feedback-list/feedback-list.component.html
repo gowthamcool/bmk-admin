@@ -1,0 +1,23 @@
+<h1>View Feedback</h1>
+    <br>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+
+                <th>FeedbackId</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container  *ngFor="let feedback of feedbacks;let i=index">
+                <tr *ngIf="i<5">
+                    <td>{{feedback.feedbackId}}</td>
+                    <td>{{feedback.name}}</td>
+                    <td>{{feedback.email}}</td>
+                    <td>{{feedback.description}}</td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
