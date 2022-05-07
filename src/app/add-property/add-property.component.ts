@@ -89,9 +89,16 @@ export class AddPropertyComponent implements OnInit {
     };
     console.log("postObs"+JSON.stringify(postObj));
     console.log("form values::::"+JSON.stringify(this.enquiry.value));
-    this.http.post('http://localhost:5000/api/product',postObj).subscribe(res=>{
+    if(postObj.status=="uc"){
+      this.http.post('http://localhost:5000/api/upcoming',postObj).subscribe(res=>{
+        console.log("Post method:::"+JSON.stringify(res));
+      })
+    }
+    else{
+      this.http.post('http://localhost:5000/api/product',postObj).subscribe(res=>{
       console.log("Post method:::"+JSON.stringify(res));
     });
+    }
   }
   addUrl(){
     let imgurl=document.createElement('div');
